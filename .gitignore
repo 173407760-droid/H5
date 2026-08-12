@@ -1,0 +1,9 @@
+node_modules/
+*.log
+.temp/
+.DS_Store
+Thumbs.db
+deploy.js
+server.js
+一键部署到GitHub.bat
+部署到GitHub.html
