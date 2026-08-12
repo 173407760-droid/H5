@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>长德鑫｜预约审厂参观</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{background:linear-gradient(180deg,#1a2a4a 0%,#0f1a2e 30%,#f5f7fa 30%,#f5f7fa 100%);font-family:-apple-system,"PingFang SC","Microsoft Yahei",sans-serif;font-size:14px;color:#333;min-height:100vh;padding-bottom:40px}
+.header{text-align:center;padding:28px 20px 20px;color:#fff}
+.header .logo-img{max-width:320px;width:100%;height:auto;margin-bottom:8px}
+.header p{font-size:12px;color:#a8b3c8;margin-top:2px}
+.box{max-width:560px;margin:0 auto;background:#fff;border-radius:12px;padding:24px 20px;box-shadow:0 4px 24px rgba(0,0,0,.08)}
+.section-title{font-size:13px;color:#888;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid #f0f0f0;display:flex;align-items:center;gap:6px}
+.section-title::before{content:"";width:3px;height:12px;background:#2563eb;border-radius:2px}
+.item{margin-bottom:16px}
+.label{display:block;margin-bottom:6px;color:#333;font-weight:500;font-size:14px}
+.label .req{color:#e74c3c;margin-left:2px}
+.input,textarea,select{width:100%;height:44px;padding:0 12px;border:1px solid #e0e0e0;border-radius:8px;font-size:15px;background:#fafbfc;transition:border-color .2s,background .2s;appearance:none;-webkit-appearance:none}
+.input:focus,textarea:focus,select:focus{outline:none;border-color:#2563eb;background:#fff}
+.input::placeholder{color:#bbb}
+textarea{height:88px;padding:10px 12px;resize:none;line-height:1.6}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23999' d='M6 8L0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:12px;appearance:none;-webkit-appearance:none;padding-right:30px}
+select option{color:#333}
+.btn{width:100%;height:50px;background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;border:none;border-radius:8px;font-size:16px;font-weight:500;margin-top:8px;cursor:pointer;transition:opacity .2s,transform .1s}
+.btn:active{transform:scale(.99);opacity:.9}
+.btn:disabled{opacity:.6;cursor:not-allowed}
+.btn-outline{background:#fff;color:#2563eb;border:1px solid #2563eb}
+.btn-ghost{background:#f5f7fa;color:#666;border:none;height:40px;font-size:13px}
+.btn-row{display:flex;gap:10px;margin-top:12px}
+.btn-row .btn{flex:1;height:44px;margin-top:0;font-size:14px}
+.tip{color:#999;font-size:12px;margin-top:6px;line-height:1.5}
+.err-text{color:#e74c3c;font-size:12px;margin-top:4px;display:none}
+.err-text.show{display:block}
+.input.error{border-color:#e74c3c;background:#fff5f5}
+.pop{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:999;padding:20px}
+.pop.show{display:flex}
+.pop-content{background:#fff;padding:30px 24px;border-radius:12px;text-align:center;width:100%;max-width:320px}
+.pop-icon{width:56px;height:56px;background:#e8f5e9;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:28px}
+.pop-title{font-size:16px;font-weight:600;margin-bottom:8px}
+.pop-desc{color:#666;font-size:13px;margin-bottom:20px;line-height:1.6}
+.pop button{padding:10px 32px;border:none;background:#2563eb;color:#fff;border-radius:6px;cursor:pointer;font-size:14px}
+.tab-bar{max-width:560px;margin:16px auto 0;background:#fff;border-radius:12px;padding:16px 20px;box-shadow:0 4px 24px rgba(0,0,0,.08)}
+.tab-bar .tabs{display:flex;gap:0;border-bottom:1px solid #eee;margin-bottom:14px}
+.tab-bar .tab{flex:1;text-align:center;padding:10px 0;font-size:14px;color:#888;cursor:pointer;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.tab-bar .tab.active{color:#2563eb;border-color:#2563eb;font-weight:500}
+.tab-bar .tab-content{display:none}
+.tab-bar .tab-content.active{display:block}
+.record-item{padding:12px 0;border-bottom:1px solid #f0f0f0}
+.record-item:last-child{border-bottom:none}
+.record-item .r-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.record-item .r-company{font-weight:500;font-size:14px}
+.record-item .r-time{font-size:12px;color:#999}
+.record-item .r-detail{font-size:12px;color:#666;line-height:1.8}
+.record-item .r-detail span{color:#999}
+.empty{text-align:center;color:#bbb;padding:30px 0;font-size:13px}
+.config-row{display:flex;gap:8px;margin-bottom:12px}
+.config-row .input{flex:1}
+.config-row .save-btn{width:auto;padding:0 16px;height:44px;background:#2563eb;color:#fff;border:none;border-radius:8px;font-size:13px;cursor:pointer;white-space:nowrap}
+.config-tip{font-size:12px;color:#888;line-height:1.6;margin-bottom:12px}
+.config-tip b{color:#2563eb}
+.stat-row{display:flex;justify-content:space-around;margin-bottom:14px}
+.stat-item{text-align:center}
+.stat-num{font-size:22px;font-weight:600;color:#2563eb}
+.stat-label{font-size:12px;color:#888;margin-top:2px}
+.footer{text-align:center;color:#999;font-size:11px;margin-top:20px;padding:0 20px}
+.switch{display:inline-flex;align-items:center;cursor:pointer;margin-left:8px}
+.switch input{display:none}
+.switch-track{width:40px;height:22px;background:#ddd;border-radius:11px;position:relative;transition:background .2s}
+.switch-track::after{content:"";position:absolute;top:2px;left:2px;width:18px;height:18px;background:#fff;border-radius:50%;transition:transform .2s}
+.switch input:checked+.switch-track{background:#2563eb}
+.switch input:checked+.switch-track::after{transform:translateX(18px)}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <img class="logo-img" src="logo.svg.png" alt="长德鑫（深圳）精密工业有限公司">
+  <p>模具 · 注塑 · ODM 一站式智造工厂</p>
+</div>
+
+<div class="box">
+  <div class="section-title">预约参观信息</div>
+  <div class="item">
+    <label class="label">公司名称<span class="req">*</span></label>
+    <input class="input" id="company" placeholder="请填写贵公司全称" maxlength="50">
+    <div class="err-text" id="err-company">请输入公司名称</div>
+  </div>
+  <div class="item">
+    <label class="label">对接人姓名<span class="req">*</span></label>
+    <input class="input" id="name" placeholder="请填写对接人姓名" maxlength="20">
+    <div class="err-text" id="err-name">请输入对接人姓名</div>
+  </div>
+  <div class="item">
+    <label class="label">对接人职位</label>
+    <input class="input" id="job" placeholder="例：产品经理 / 采购 / 创始人" maxlength="30">
+  </div>
+  <div class="item">
+    <label class="label">联系电话<span class="req">*</span></label>
+    <input class="input" id="phone" placeholder="请填写11位手机号" maxlength="11" type="text" inputmode="numeric" pattern="[0-9]*">
+    <div class="err-text" id="err-phone">请输入正确的11位手机号</div>
+  </div>
+  <div class="item">
+    <label class="label">微信 / 邮箱</label>
+    <input class="input" id="wx" placeholder="选填，便于商务对接" maxlength="50">
+  </div>
+  <div class="item">
+    <label class="label">预约到访人数</label>
+    <input class="input" id="num" placeholder="预计到访人数" type="number" min="1" max="50" value="1">
+  </div>
+  <div class="item">
+    <label class="label">意向参观日期</label>
+    <input class="input" type="date" id="visitDate">
+  </div>
+  <div class="item">
+    <label class="label">意向合作品类</label>
+    <select class="input" id="type">
+      <option value="">请选择品类</option>
+      <option value="个护美发小家电">个护美发小家电</option>
+      <option value="宠物智能硬件">宠物智能硬件</option>
+      <option value="消费电子外壳">消费电子外壳</option>
+      <option value="模具开发定制">模具开发定制</option>
+      <option value="注塑加工代工">注塑加工代工</option>
+      <option value="整机ODM代工">整机ODM代工</option>
+      <option value="其他品类">其他品类</option>
+    </select>
+  </div>
+  <div class="item">
+    <label class="label">需求备注 / 咨询内容</label>
+    <textarea id="remark" placeholder="可填写产品需求、量产数量、咨询问题等，便于提前准备" maxlength="300"></textarea>
+  </div>
+
+  <button class="btn" id="submitBtn" onclick="submitForm()">提交预约申请</button>
+  <p class="tip" style="text-align:center;margin-top:12px">提交即代表预约成功，商务专员将1-2个工作日内与您对接</p>
+</div>
+
+<!-- 数据管理 -->
+<div class="tab-bar">
+  <div class="tabs">
+    <div class="tab active" data-tab="record" onclick="switchTab('record')">预约记录</div>
+    <div class="tab" data-tab="config" onclick="switchTab('config')">推送配置</div>
+    <div class="tab" data-tab="stat" onclick="switchTab('stat')">数据统计</div>
+  </div>
+
+  <div class="tab-content active" id="tab-record">
+    <div id="recordList"></div>
+    <div class="btn-row">
+      <button class="btn btn-ghost" onclick="exportData()">📥 导出数据</button>
+      <button class="btn btn-ghost" onclick="clearData()">🗑 清空记录</button>
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab-config">
+    <div class="config-tip">
+      配置<b>企业微信群机器人Webhook</b>后，提交预约信息将自动推送到企业微信群。<br>
+      获取方式：企业微信群 → 群设置 → 群机器人 → 新建 → 复制Webhook地址
+    </div>
+    <div class="config-row">
+      <input class="input" id="webhook" placeholder="粘贴Webhook地址">
+      <button class="save-btn" onclick="saveWebhook()">保存</button>
+    </div>
+    <div class="config-tip" style="margin-bottom:0">
+      💡 未配置Webhook时，数据仅本地存储；配置后可实时推送到企业微信群。
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab-stat">
+    <div class="stat-row">
+      <div class="stat-item">
+        <div class="stat-num" id="statTotal">0</div>
+        <div class="stat-label">总预约数</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" id="statToday">0</div>
+        <div class="stat-label">今日新增</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" id="statMonth">0</div>
+        <div class="stat-label">本月新增</div>
+      </div>
+    </div>
+    <div id="topTypeList"></div>
+  </div>
+</div>
+
+<div class="footer">
+  © 长德鑫（深圳）精密工业有限公司 · 保密信息，仅供内部使用
+</div>
+
+<!-- 成功弹窗 -->
+<div class="pop" id="pop">
+  <div class="pop-content">
+    <div class="pop-icon">✅</div>
+    <div class="pop-title">预约提交成功</div>
+    <div class="pop-desc">商务专员将尽快与您联系<br/>确认参观行程</div>
+    <button onclick="closePop()">知道了</button>
+  </div>
+</div>
+
+<script>
+/* ====== 初始化 ====== */
+(function(){
+  // 加载Webhook配置
+  const saved = localStorage.getItem('cdx_webhook');
+  if(saved) document.getElementById('webhook').value = saved;
+  // 渲染记录列表
+  renderRecords();
+  // 渲染统计
+  renderStats();
+  // 设置日期默认值（今天+7天）
+  const d = new Date();
+  d.setDate(d.getDate()+7);
+  document.getElementById('visitDate').value = d.toISOString().split('T')[0];
+})();
+
+/* ====== Tab切换 ====== */
+function switchTab(name){
+  document.querySelectorAll('.tab').forEach(t=>{
+    t.classList.toggle('active', t.dataset.tab===name);
+  });
+  document.querySelectorAll('.tab-content').forEach(c=>{
+    c.classList.toggle('active', c.id==='tab-'+name);
+  });
+  if(name==='record') renderRecords();
+  if(name==='stat') renderStats();
+}
+
+/* ====== 表单提交 ====== */
+let isSubmit = false;
+function submitForm(){
+  resetErr();
+
+  const company = document.getElementById('company').value.trim();
+  const name = document.getElementById('name').value.trim();
+  const job = document.getElementById('job').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const wx = document.getElementById('wx').value.trim();
+  const num = document.getElementById('num').value || '1';
+  const visitDate = document.getElementById('visitDate').value || '未选择';
+  const type = document.getElementById('type').value || '未选择';
+  const remark = document.getElementById('remark').value.trim() || '无备注';
+
+  let flag = true;
+  if(!company){ showErr('company','err-company'); flag=false; }
+  if(!name){ showErr('name','err-name'); flag=false; }
+  if(!/^1[3-9]\d{9}$/.test(phone)){ showErr('phone','err-phone'); flag=false; }
+  if(!flag) return;
+
+  if(isSubmit) return;
+  isSubmit = true;
+
+  const btn = document.getElementById('submitBtn');
+  btn.innerText = '提交中...';
+  btn.disabled = true;
+
+  const now = new Date();
+  const submitData = {
+    id: Date.now(),
+    time: now.toLocaleString('zh-CN',{hour12:false}),
+    timestamp: now.getTime(),
+    company, name, job, phone, wx, num, visitDate, type, remark
+  };
+
+  // 本地存储
+  const list = JSON.parse(localStorage.getItem('cdx_records') || '[]');
+  list.push(submitData);
+  localStorage.setItem('cdx_records', JSON.stringify(list));
+
+  // 企微推送
+  pushToWeixin(submitData);
+
+  // 弹窗+重置
+  setTimeout(()=>{
+    document.getElementById('pop').classList.add('show');
+    resetForm();
+    isSubmit = false;
+    btn.innerText = '提交预约申请';
+    btn.disabled = false;
+    renderRecords();
+    renderStats();
+  },600);
+}
+
+/* ====== 企微推送 ====== */
+function pushToWeixin(d){
+  const webhook = localStorage.getItem('cdx_webhook');
+  if(!webhook) return;
+
+  const text = `【长德鑫-工厂参观预约】
+提交时间：${d.time}
+公司名称：${d.company}
+对接姓名：${d.name}
+职位：${d.job||'-'}
+联系电话：${d.phone}
+微信/邮箱：${d.wx||'-'}
+到访人数：${d.num}人
+预约日期：${d.visitDate}
+合作品类：${d.type}
+需求备注：${d.remark}`;
+
+  fetch(webhook,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({msgtype:'text',text:{content:text}})
+  }).catch(()=>{});
+}
+
+/* ====== 弹窗关闭 ====== */
+function closePop(){
+  document.getElementById('pop').classList.remove('show');
+}
+
+/* ====== 重置表单 ====== */
+function resetForm(){
+  ['company','name','job','phone','wx','num','remark'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.value = '';
+  });
+  document.getElementById('num').value = '1';
+  document.getElementById('type').value = '';
+  const d = new Date();
+  d.setDate(d.getDate()+7);
+  document.getElementById('visitDate').value = d.toISOString().split('T')[0];
+  resetErr();
+}
+
+/* ====== 错误提示 ====== */
+function resetErr(){
+  document.querySelectorAll('.err-text').forEach(e=>e.classList.remove('show'));
+  document.querySelectorAll('.input.error').forEach(e=>e.classList.remove('error'));
+}
+function showErr(inputId,errId){
+  document.getElementById(inputId).classList.add('error');
+  document.getElementById(errId).classList.add('show');
+}
+
+/* ====== 渲染记录 ====== */
+function renderRecords(){
+  const list = JSON.parse(localStorage.getItem('cdx_records') || '[]');
+  const box = document.getElementById('recordList');
+  if(list.length===0){
+    box.innerHTML = '<div class="empty">暂无预约记录</div>';
+    return;
+  }
+  box.innerHTML = list.slice().reverse().map((d,i)=>`
+    <div class="record-item">
+      <div class="r-head">
+        <span class="r-company">${escapeHtml(d.company)}</span>
+        <span class="r-time">${d.time}</span>
+      </div>
+      <div class="r-detail">
+        <div>${escapeHtml(d.name)} / ${escapeHtml(d.job||'-')} · ${d.phone}</div>
+        <div>📅 ${d.visitDate} · 👥 ${d.num}人 · 🏷 ${d.type}</div>
+        <div><span>备注：</span>${escapeHtml(d.remark)}</div>
+        <button class="btn btn-ghost" style="padding:4px 10px;height:28px;font-size:11px;margin-top:4px" onclick="deleteRecord('${d.id}')">删除</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ====== 删除单条记录 ====== */
+function deleteRecord(id){
+  if(!confirm('确定删除此条记录？')) return;
+  let list = JSON.parse(localStorage.getItem('cdx_records') || '[]');
+  list = list.filter(d=>String(d.id)!==String(id));
+  localStorage.setItem('cdx_records', JSON.stringify(list));
+  renderRecords();
+  renderStats();
+}
+
+/* ====== 导出数据 ====== */
+function exportData(){
+  const list = JSON.parse(localStorage.getItem('cdx_records') || '[]');
+  if(list.length===0){ alert('暂无数据可导出'); return; }
+  const headers = ['序号','提交时间','公司名称','对接人','职位','联系电话','微信/邮箱','到访人数','预约日期','合作品类','需求备注'];
+  const rows = list.map((d,i)=>[
+    i+1, d.time, d.company, d.name, d.job, d.phone, d.wx, d.num, d.visitDate, d.type, d.remark
+  ]);
+  let csv = '\uFEFF' + headers.join(',') + '\n';
+  csv += rows.map(r=>r.map(c=>`"${String(c||'').replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv],{type:'text/csv;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `长德鑫预约记录_${new Date().toISOString().split('T')[0]}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+/* ====== 清空数据 ====== */
+function clearData(){
+  if(!confirm('确定清空所有预约记录？此操作不可恢复！')) return;
+  localStorage.removeItem('cdx_records');
+  renderRecords();
+  renderStats();
+}
+
+/* ====== 保存Webhook ====== */
+function saveWebhook(){
+  const v = document.getElementById('webhook').value.trim();
+  localStorage.setItem('cdx_webhook', v);
+  alert('Webhook配置已保存');
+}
+
+/* ====== 数据统计 ====== */
+function renderStats(){
+  const list = JSON.parse(localStorage.getItem('cdx_records') || '[]');
+  const now = new Date();
+  const today = now.toDateString();
+  const thisMonth = now.getMonth();
+  const thisYear = now.getFullYear();
+
+  const todayCount = list.filter(d=>new Date(d.timestamp).toDateString()===today).length;
+  const monthCount = list.filter(d=>{
+    const t = new Date(d.timestamp);
+    return t.getFullYear()===thisYear && t.getMonth()===thisMonth;
+  }).length;
+
+  document.getElementById('statTotal').innerText = list.length;
+  document.getElementById('statToday').innerText = todayCount;
+  document.getElementById('statMonth').innerText = monthCount;
+
+  // 品类统计
+  const typeMap = {};
+  list.forEach(d=>{
+    const t = d.type || '未选择';
+    typeMap[t] = (typeMap[t]||0)+1;
+  });
+  const sorted = Object.entries(typeMap).sort((a,b)=>b[1]-a[1]).slice(0,5);
+  const total = list.length || 1;
+  document.getElementById('topTypeList').innerHTML = sorted.map(([t,c])=>{
+    const pct = Math.round(c/total*100);
+    return `
+      <div style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
+          <span>${t}</span><span style="color:#999">${c} 条 · ${pct}%</span>
+        </div>
+        <div style="background:#f0f0f0;height:6px;border-radius:3px">
+          <div style="background:#2563eb;height:100%;border-radius:3px;width:${pct}%"></div>
+        </div>
+      </div>
+    `;
+  }).join('') || '<div class="empty">暂无统计数据</div>';
+}
+
+/* ====== HTML转义 ====== */
+function escapeHtml(str){
+  const div = document.createElement('div');
+  div.appendChild(document.createTextNode(str||''));
+  return div.innerHTML;
+}
+</script>
+</body>
+</html>
